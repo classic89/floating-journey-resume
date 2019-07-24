@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import django_heroku
+import psycopg2
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'resume',
 ]
 
 MIDDLEWARE = [
@@ -83,14 +86,16 @@ WSGI_APPLICATION = 'resume.wsgi.application'
 DATABASES = {
   'default': {
      'ENGINE': 'django.db.backends.postgresql',
-      'NAME': os.environ.get('DB_NAME', 'resume_database'),
-      'USER': os.environ.get('DB_USER', 'megan'),
-      'PASSWORD': os.environ.get('DB_PASS', '2ez2B4got'),
-      'HOST': 'localhost',
+      'NAME': os.environ.get('DB_NAME', 'dvunu25upr21f'),
+      'USER': os.environ.get('DB_USER', 'ruznrsnbizvjgh'),
+      'PASSWORD': os.environ.get('DB_PASS', 'a1bf8d67b6a094eeff97723b0da161637878348668653aca2571e2076050605e'),
+      'HOST': 'ec2-174-129-226-234.compute-1.amazonaws.com',
       'PORT': '5432'
    }
 }
 
+DATABASE_URL = os.environ['postgres://ruznrsnbizvjgh:a1bf8d67b6a094eeff97723b0da161637878348668653aca2571e2076050605e@ec2-174-129-226-234.compute-1.amazonaws.com:5432/dvunu25upr21f']
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -126,6 +131,11 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = "/static/"
+
+TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
+
+django_heroku.settings(locals())
