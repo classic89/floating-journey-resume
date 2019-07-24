@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'resume.wsgi.application'
 # DATABASES = {}
 # DATABASES['default'] = DATABASE_URL.config(conn_max_age=600)
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+conn = psycopg2.connect(os.environ['DATABASE_URL'], sslmode='require')
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
