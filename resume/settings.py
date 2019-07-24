@@ -13,18 +13,22 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 import django_heroku
 import psycopg2
+import dj_database_url
+import dotenv
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p2k7km#@_-f3)fdbq=df$r&k&tmu5p8d3$8pfnscuk48h(ihd8'
-
+SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -51,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'resume.urls'
@@ -83,18 +88,9 @@ WSGI_APPLICATION = 'resume.wsgi.application'
 #         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
-DATABASES = {
-  'default': {
-     'ENGINE': 'django.db.backends.postgresql',
-      'NAME': os.environ.get('DB_NAME', 'dvunu25upr21f'),
-      'USER': os.environ.get('DB_USER', 'ruznrsnbizvjgh'),
-      'PASSWORD': os.environ.get('DB_PASS', 'a1bf8d67b6a094eeff97723b0da161637878348668653aca2571e2076050605e'),
-      'HOST': 'ec2-174-129-226-234.compute-1.amazonaws.com',
-      'PORT': '5432'
-   }
-}
+# DATABASES = {}
+# DATABASES['default'] = DATABASE_URL.config(conn_max_age=600)
 
-DATABASE_URL = os.environ['postgres://ruznrsnbizvjgh:a1bf8d67b6a094eeff97723b0da161637878348668653aca2571e2076050605e@ec2-174-129-226-234.compute-1.amazonaws.com:5432/dvunu25upr21f']
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
 
 # Password validation
@@ -135,7 +131,9 @@ USE_TZ = True
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
 
 django_heroku.settings(locals())
+# del DATABASES['default']['OPTIONS']['sslmode']
