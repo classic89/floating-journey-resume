@@ -11,6 +11,7 @@ whitenoise = "*"
 requests = "*"
 django-heroku = "*"
 python-dotenv  = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"
