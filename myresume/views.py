@@ -1,6 +1,6 @@
  from rest_framework import generics
 
-from .models import Todo
+from .models import myresume
 from .serializers import TodoSerializer
 from django.shortcuts import render
 from django.http import HttpResponse
