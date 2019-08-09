@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import myresume
+from .models import MyResume
 
 # Register your models here.
 

@@ -1,6 +1,6 @@
 # todos/serializers.py
 from rest_framework import serializers
-from .models import myresume
+from .models import MyResume
 
 
 class Serializer(serializers.ModelSerializer):
@@ -10,4 +10,4 @@ class Serializer(serializers.ModelSerializer):
             'title',
             'description',
         )
-        model = myresume
+        model = MyResume
