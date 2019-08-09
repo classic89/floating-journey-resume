@@ -139,7 +139,8 @@ USE_TZ = True
 
 # we whitelist localhost:3000 because that's where frontend will be served
 CORS_ORIGIN_WHITELIST = (
-         'react-classic89.codeanyapp.com'
+         'http://localhost:3000/',
+         'http://react-classic89.codeanyapp.com'
      )
 
 # Static files (CSS, JavaScript, Images)
