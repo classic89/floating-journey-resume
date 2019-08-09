@@ -2,7 +2,7 @@ from django.db import models
 
 # myresume/models.py
 
-class Todo(models.Model):
+class myresume(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
 
