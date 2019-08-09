@@ -16,10 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.core.wsgi import get_wsgi_application
-from whitenoise.django import DjangoWhiteNoise
 
 application = get_wsgi_application()
-application = DjangoWhiteNoise(application)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
