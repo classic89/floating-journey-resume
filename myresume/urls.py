@@ -6,6 +6,6 @@ router = routers.DefaultRouter()
 router.register(r'myresume', views.ResumeView, 'myresume')
 
 urlpatterns = [
-#     path('', views.index, name='index'),
-  path('api/', include(router.urls))
+    path('', views.index, name='index'),
+    path('api/', include(router.urls))
 ]
