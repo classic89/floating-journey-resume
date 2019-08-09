@@ -21,5 +21,5 @@ application = get_wsgi_application()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('myresume/', include('myresume.url')),
+    path('myresume/', include('myresume.urls')),
 ]
