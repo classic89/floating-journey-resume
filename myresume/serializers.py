@@ -3,11 +3,11 @@ from rest_framework import serializers
 from .models import myresume
 
 
-class TodoSerializer(serializers.ModelSerializer):
+class Serializer(serializers.ModelSerializer):
     class Meta:
         fields = (
             'id',
             'title',
             'description',
         )
-        model = Todo
+        model = myresume
