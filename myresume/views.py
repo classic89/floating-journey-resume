@@ -1,15 +1,14 @@
-from rest_framework import generics
-
-from .models import myresume
+from rest_framework import generics, viewsets
+from .models import MyResume
 from .serializers import Serializer
 from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the myresume view index.")
+    return HttpResponse("Hello, world. You're at the MyResume view index.")
  
 class ResumeView(viewsets.ModelViewSet):
     serializer_class = Serializer
-    queryset = myresume.objects.all()
+    queryset = MyResume.objects.all()
 
 
