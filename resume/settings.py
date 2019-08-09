@@ -15,7 +15,7 @@ import django_heroku
 import psycopg2
 import dj_database_url
 import dotenv
-from boto.s3.connection import S3Connection
+# from boto.s3.connection import S3Connection
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
